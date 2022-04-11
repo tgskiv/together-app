@@ -118,9 +118,9 @@ export default function CheckIn(props: CheckInProps) {
       setAbleToWorkError(errorMessage);
     }
 
-    if (!wasAbleToWorkYesterdayValue.length) {
-      setWasAbleToWorkYesterdayError(errorMessage);
-    }
+    // if (!wasAbleToWorkYesterdayValue.length) {
+    //   setWasAbleToWorkYesterdayError(errorMessage);
+    // }
 
     if (isManualMode && !placeId) {
       setPlaceIdError('Please select a location.');
@@ -131,13 +131,13 @@ export default function CheckIn(props: CheckInProps) {
         !isSafeValue.length ||
         !isAbleToAssistValue.length ||
         !isAbleToWorkValue.length ||
-        !wasAbleToWorkYesterdayValue.length ||
+        // !wasAbleToWorkYesterdayValue.length ||
         !placeId,
       );
     } else {
       return !Boolean(!isSafeValue.length ||
         !isAbleToAssistValue.length ||
-        !wasAbleToWorkYesterdayValue.length ||
+        // !wasAbleToWorkYesterdayValue.length ||
         !isAbleToWorkValue.length);
     }
   }
@@ -389,22 +389,23 @@ export default function CheckIn(props: CheckInProps) {
               <option value='yes'>Yes</option>
               <option value='no'>No</option>
             </Select>
-          </FormRow><FormRow>
-            <Select
-              error={wasAbleToWorkYesterdayError}
-              name='wasAbleToWorkYesterday'
-              label='Were you able to work on the previous working day?'
-              value={wasAbleToWorkYesterdayValue}
-              selected=''
-              onChange={wasAbleToWorkYesterdayChange}
-            >
-              <option disabled value=''>
-                Select
-              </option>
-              <option value='yes'>Yes</option>
-              <option value='no'>No</option>
-            </Select>
           </FormRow>
+          {/*<FormRow>*/}
+          {/*  <Select*/}
+          {/*    error={wasAbleToWorkYesterdayError}*/}
+          {/*    name='wasAbleToWorkYesterday'*/}
+          {/*    label='Were you able to work on the previous working day?'*/}
+          {/*    value={wasAbleToWorkYesterdayValue}*/}
+          {/*    selected=''*/}
+          {/*    onChange={wasAbleToWorkYesterdayChange}*/}
+          {/*  >*/}
+          {/*    <option disabled value=''>*/}
+          {/*      Select*/}
+          {/*    </option>*/}
+          {/*    <option value='yes'>Yes</option>*/}
+          {/*    <option value='no'>No</option>*/}
+          {/*  </Select>*/}
+          {/*</FormRow>*/}
           <FormRow>
             <Input
               value={commentValue}
