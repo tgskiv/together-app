@@ -249,6 +249,11 @@ export default function CheckIn(props: CheckInProps) {
         <Banner type="secondary" icon={<AccountIcon/>} style={{ margin: '0 0 16px' }}>
           <><strong>Checking In: </strong><span>{props.name} ({props.email})</span></>
         </Banner>
+        <Banner type="secondary" style={{ margin: '0 0 16px' }} >
+          Your data is in good hands, it stays within the Beetroot environment!
+          <br />
+          <a href="https://docs.google.com/document/d/1mFzqzGvQ3YH1630H4jovTRqraVkpSA7ddoCl-aTLu3U/edit" style={{ textDecoration: 'underline' }}>Privacy Notice</a>
+        </Banner>
         {isGeolocationAvailable ? (
           !isManualMode && (
             geoDisabledByUser ? (
