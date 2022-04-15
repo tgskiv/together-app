@@ -134,7 +134,7 @@ export class MessageService implements IMessageService {
           `${bold('Is Mobilized:')} ${getDisplayTextFromBool(memberDto.isMobilized)}`,
           `${bold('Is Safe:')} ${getDisplayTextFromCheckInBoolByMember(memberDto, 'isSafe')}`,
           `${bold('Can Work:')} ${getDisplayTextFromCheckInBoolByMember(memberDto, 'isAbleToWork')}`,
-          `${bold('Can Assist:')} ${getDisplayTextFromCheckInBoolByMember(memberDto, 'isAbleToAssist')}`,
+          `${bold('Need help:')} ${getDisplayTextFromCheckInBoolByMember(memberDto, 'isAbleToAssist')}`,
         ),
       Blocks.Section({ text: `${bold('Comment:')} ${memberDto.checkIn && memberDto.checkIn.comment || 'N/A'}` }),
     ];
