@@ -24,7 +24,7 @@ export default async function Spreadsheet(req: NextApiRequest, res: NextApiRespo
   try {
     res.status(200).json({});
 
-    let members = await memberService.getAllCheckInNonNull();
+    let members = await memberService.getAllCheckIn();
 
     const GOOGLESCRIPT_URL = process.env.GOOGLESCRIPT_URL!;
     const token = process.env.JOBS_API_TOKEN!;

@@ -96,6 +96,11 @@ export class MemberProvider extends PrismaService implements IMemberProvider {
     return MemberProvider.getMembersFromRecords(records);
   }
 
+  public getAllCheckIn(): Promise<Member[]> {
+    return this.getAll()
+      .then((members) => members);
+  }
+
   public getAllCheckInNonNull(): Promise<Member[]> {
     return this.getAll()
       .then((members) => members
