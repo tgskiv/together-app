@@ -120,6 +120,7 @@ export class MessageService implements IMessageService {
       .blocks(
         Blocks.Section({ text: `Hi there, ${member ? user(member.slackId) : 'everyone'}. We hope that you and your loved ones are as safe as possible.` }),
         Blocks.Section({ text: `Please check in with us – this is super important for us to be able to provide assistance and make critical decisions for our organization.` }),
+        Blocks.Section({ text: `Your data is in good hands, it stays within the Beetroot environment!` }),
         ...MessageService.getCheckInActions(),
       );
   }
