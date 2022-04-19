@@ -16,6 +16,7 @@
     "migrate:production": "npx prisma migrate deploy",
     "initialize": "node jobs-dist/initialize.js",
     "spreadsheet": "node jobs-dist/spreadsheet.js",
+    "bigquery": "node jobs-dist/bigquery.js",
     "sync": "node jobs-dist/sync.js",
     "notify": "node jobs-dist/notify.js",
     "remind": "node jobs-dist/remind.js",

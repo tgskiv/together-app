@@ -92,6 +92,10 @@ export class MemberService implements IMemberService {
     return this.memberProvider.getAll();
   }
 
+  public getAllCheckIn(): Promise<Member[]> {
+    return this.memberProvider.getAllCheckIn();
+  }
+
   public getAllCheckInNonNull(): Promise<Member[]> {
     return this.memberProvider.getAllCheckInNonNull();
   }

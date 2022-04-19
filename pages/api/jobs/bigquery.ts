@@ -8,7 +8,7 @@ interface Payload {
   token: string;
 }
 
-export default async function Spreadsheet(req: NextApiRequest, res: NextApiResponse) {
+export default async function Bigquery(req: NextApiRequest, res: NextApiResponse) {
   try {
     validateHttpMethod('GET', req.method!);
 
@@ -30,7 +30,7 @@ export default async function Spreadsheet(req: NextApiRequest, res: NextApiRespo
     const token = process.env.JOBS_API_TOKEN!;
 
 
-    axios.post(`${GOOGLESCRIPT_URL}?action=postAbsense&token=${token}`, members)
+    axios.post(`${GOOGLESCRIPT_URL}?action=postBigquery&token=${token}`, members)
     .then(() => console.log(`Data sent`))
     .catch((error) => {
       const hasErrorTextInResponse = axios.isAxiosError(error)
@@ -50,13 +50,13 @@ export default async function Spreadsheet(req: NextApiRequest, res: NextApiRespo
     });
 
 
-    const message = 'The job `spreadsheet` has been completed successfully.';
+    const message = 'The job `bigquery` has been completed successfully.';
 
     logger
       ? logger.info(message)
       : console.log(message);
   } catch (error) {
-    const message = 'An error occurred while running the `spreadsheet` job.';
+    const message = 'An error occurred while running the `bigquery` job.';
 
     logger
       ? logger.info(message)

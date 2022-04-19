@@ -12,5 +12,7 @@ export interface IMemberProvider {
 
   getAll(): Promise<Member[]>;
 
+  getAllCheckIn(): Promise<Member[]>;
+
   getAllCheckInNonNull(): Promise<Member[]>;
 }
