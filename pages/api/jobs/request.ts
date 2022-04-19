@@ -12,6 +12,7 @@ export default async function Request(req: NextApiRequest, res: NextApiResponse)
 
   if ([0, 6].includes(getDay(new Date()))) {
     res.status(200).json({});
+    return
   }
 
   try {

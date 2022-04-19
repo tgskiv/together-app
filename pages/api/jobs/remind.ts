@@ -5,44 +5,47 @@ import {logger} from '../../../config/custom';
 import getDay from "date-fns/getDay";
 
 interface Payload {
-  token: string;
+    token: string;
 }
 
 export default async function Remind(req: NextApiRequest, res: NextApiResponse) {
-  if ([0, 6].includes(getDay(new Date()))) {
-    res.status(200).json({});
-  }
-  try {
-    validateHttpMethod('GET', req.method!);
 
-    const {token} = req.query as unknown as Payload;
+    if ([0, 6].includes(getDay(new Date()))) {
+        res.status(200).json({});
+        return
+    }
 
-    validateJobsAPIToken(token);
-  } catch (error) {
-    handleAPIErrors(error, res);
+    try {
+        validateHttpMethod('GET', req.method!);
 
-    return;
-  }
+        const {token} = req.query as unknown as Payload;
 
-  try {
-    res.status(200).json({});
+        validateJobsAPIToken(token);
+    } catch (error) {
+        handleAPIErrors(error, res);
 
-    await memberService.remindMembersOfLateCheckIn();
+        return;
+    }
 
-    const message = 'The job `remind` has been completed successfully.';
+    try {
+        res.status(200).json({});
 
-    logger
-        ? logger.info(message)
-        : console.log(message);
-  } catch (error) {
-    const message = 'An error occurred while running the `remind` job.';
+        await memberService.remindMembersOfLateCheckIn();
 
-    logger
-        ? logger.info(message)
-        : console.log(message);
+        const message = 'The job `remind` has been completed successfully.';
 
-    logger
-        ? logger.error(error)
-        : console.log(error);
-  }
+        logger
+            ? logger.info(message)
+            : console.log(message);
+    } catch (error) {
+        const message = 'An error occurred while running the `remind` job.';
+
+        logger
+            ? logger.info(message)
+            : console.log(message);
+
+        logger
+            ? logger.error(error)
+            : console.log(error);
+    }
 };
