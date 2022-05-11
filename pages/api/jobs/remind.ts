@@ -10,7 +10,8 @@ interface Payload {
 
 export default async function Remind(req: NextApiRequest, res: NextApiResponse) {
 
-    if ([0, 6].includes(getDay(new Date()))) {
+    // do request only on mondays and fridays
+    if (! [1, 5].includes(getDay(new Date()))) {
         res.status(200).json({});
         return
     }
