@@ -215,7 +215,7 @@ export class MemberService implements IMemberService {
   public async notifyOfLateCheckIns(): Promise<void> {
     const members = await this.memberProvider.getAll()
       .then((results) => results.filter((member) => {
-        const isExempt = member.isExemptFromCheckIn;
+        const isExempt = member.isExemptFromCheckIn || member.email.endsWith('beetroot.academy');
         const hasCheckIn = Boolean(member.checkIn);
         const hasCheckedInRecently = hasCheckIn && isWithinNHours(member.checkIn!.createdAt, this.hoursBeforeNotification);
 
@@ -228,7 +228,7 @@ export class MemberService implements IMemberService {
   public async remindMembersOfLateCheckIn(): Promise<void> {
     const members = await this.memberProvider.getAll()
       .then((results) => results.filter((member) => {
-        const isExempt = member.isExemptFromCheckIn;
+        const isExempt = member.isExemptFromCheckIn || member.email.endsWith('beetroot.academy');
         const hasCheckIn = Boolean(member.checkIn);
         const hasCheckedInRecently = hasCheckIn && isWithinNHours(member.checkIn!.createdAt, this.hoursBeforeReminder);
 
@@ -250,7 +250,7 @@ export class MemberService implements IMemberService {
     if (this.requestCheckInDirectMessage) {
       const members = await this.memberProvider.getAll()
         .then((results) => results.filter((member) => {
-          const isExempt = member.isExemptFromCheckIn;
+          const isExempt = member.isExemptFromCheckIn || member.email.endsWith('beetroot.academy');
 
           return !isExempt;
         }));
