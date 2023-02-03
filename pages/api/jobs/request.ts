@@ -2,16 +2,18 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import {memberService} from '../../../services';
 import {handleAPIErrors, validateHttpMethod, validateJobsAPIToken} from '../../../helpers/server';
 import {logger} from '../../../config/custom';
-import getDay from "date-fns/getDay";
+import {isFirstWeekDayNow} from "./_date";
 
 interface Payload {
   token: string;
 }
 
+
+
 export default async function Request(req: NextApiRequest, res: NextApiResponse) {
 
-  // do request only on mondays and fridays
-  if (! [1, 5].includes(getDay(new Date()))) {
+  // do request only on mondays
+  if (!isFirstWeekDayNow(1)) {
     res.status(200).json({});
     return
   }

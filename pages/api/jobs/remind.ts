@@ -3,6 +3,7 @@ import {memberService} from '../../../services';
 import {handleAPIErrors, validateHttpMethod, validateJobsAPIToken} from '../../../helpers/server';
 import {logger} from '../../../config/custom';
 import getDay from "date-fns/getDay";
+import {isFirstWeekDayNow} from "./_date";
 
 interface Payload {
     token: string;
@@ -11,7 +12,7 @@ interface Payload {
 export default async function Remind(req: NextApiRequest, res: NextApiResponse) {
 
     // do request only on mondays and fridays
-    if (! [1, 5].includes(getDay(new Date()))) {
+    if (!(isFirstWeekDayNow(1) || isFirstWeekDayNow(3))) {
         res.status(200).json({});
         return
     }
